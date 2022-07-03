@@ -1,38 +1,139 @@
-.App {
-  text-align: center;
+.letterPresent{
+  background-color: gold;
+  border: 2px solid gold;
+  transition: background-color 500ms linear;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.letterNotPresent{
+  background-color: tomato;
+  border: 2px solid tomato;
+  transition: background-color 500ms linear;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.letterInCorrectPosition{
+  background-color: mediumseagreen;
+  border: 2px solid mediumseagreen;
+  color:white;
+  transition: background-color 500ms linear;
+}
+.emptyCell{
+  border: 2px solid #a9b3bc;
+  transition: border 100ms linear;
+}
+@keyframes nonEmptyCells {
+  0% {
+    transform: scale(0.9);
+  }
+  25% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
   }
 }
+.notEmptyCell{
+  border: 2px solid #6f7f90;
+  transition: border 100ms linear;
+  animation: nonEmptyCells 150ms ease-out;
+}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.cell {
+  height: 70px;
+  width: 70px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-transform: upperCase;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 25px;
+  font-weight: bold;
+}
+.cellContainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.btn {
+  background-color: #0095ff;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  display: block;
+  margin: 0;
+  margin-top: 10px;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  width:40%;
+}
+.btn-close{
+  background-color: tomato;
+}
+.btn:hover,
+.btn:focus {
+  background-color: #07c;
+}
+.btn-close:hover,
+.btn-close:focus {
+  background-color: darkred;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.btn:active {
+  background-color: #0064bd;
+  box-shadow: none;
+}
+.btn-close:active {
+  background-color: lightcoral;
+  box-shadow: none;
+}
+
+.hiddenWord{
+  color:darkgreen;
+  font-size: 25px;
+  font-weight: bold;
+  border: 1px solid darkgreen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:5px;
+  text-transform: uppercase;
+  background-color: lightgreen;
+  margin-top:5px
+}
+.hiddenWordDescription{
+  margin:0;
+  color: black
+}
+.win{
+  color:mediumseagreen;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.lose{
+  color:tomato;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
