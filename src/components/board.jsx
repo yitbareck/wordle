@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import data from "../service/data";
 import AppModal from "./appModal";
 
 import Row from "./row";
 
-const wordLength = 5;
-
-export default function Board() {
+export default function Board({ wordLength = 5 }) {
   const [guessedWords, setGuessedWords] = useState(() => {
     return Array(6)
       .fill(null)
@@ -15,7 +14,7 @@ export default function Board() {
       }));
   });
   const [guessedWord, setGuessedWord] = useState("");
-  const [hiddenWord, setHiddenWord] = useState("world");
+  const [hiddenWord, setHiddenWord] = useState("");
   const [index, setIndex] = useState(0);
   const [gameStatus, setGameStatus] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -23,11 +22,14 @@ export default function Board() {
   const btnRef = useRef();
 
   useEffect(() => {
+    handleRestart();
+  }, [wordLength]);
+  useEffect(() => {
     if (gameStatus !== 0) return;
     const onKeyDown = (e) => {
       const char = e.key;
       if (
-        guessedWord.length === wordLength &&
+        guessedWord.length === hiddenWord.length &&
         char !== "Enter" &&
         char !== "Backspace"
       ) {
@@ -36,7 +38,7 @@ export default function Board() {
       }
       if (char === "Enter") {
         //if user presses 'Enter'
-        if (guessedWord.length < wordLength) {
+        if (guessedWord.length < hiddenWord.length) {
           //unfinished guess
           return;
         }
@@ -53,10 +55,9 @@ export default function Board() {
           setGameStatus(2);
           setShowModal(true);
         } else {
-          setGuessedWord("");
+          setGuessedWord(""); //reset the guess word
           setIndex(index + 1); //increment current index by 1
         }
-        //reset the guess word
         return;
       }
       if (char === "Backspace") {
@@ -83,11 +84,11 @@ export default function Board() {
     return () => {
       window.removeEventListener("keydown", onKeyDown);
     };
-  });
+  }, [index, guessedWord, hiddenWord, gameStatus]);
 
   //restart game
   const handleRestart = () => {
-    setIndex(0); //reset index
+    setIndex(0);
     setGuessedWords((prev) => {
       return prev.map((word) => {
         word.checkMode = false;
@@ -97,18 +98,16 @@ export default function Board() {
     });
     setGuessedWord("");
     setGameStatus(0);
+    data.getRandomWord(wordLength).then((word) => {
+      setHiddenWord(word);
+    });
     btnRef.current.blur();
   };
 
   return (
     <div>
       {guessedWords.map((guessedWord, i) => (
-        <Row
-          key={i}
-          wordLength={wordLength}
-          hiddenWord={hiddenWord}
-          guessedWord={guessedWord}
-        />
+        <Row key={i} hiddenWord={hiddenWord} guessedWord={guessedWord} />
       ))}
       <button ref={btnRef} className="btn" onClick={handleRestart}>
         Restart

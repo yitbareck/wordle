@@ -1,3 +1,9 @@
+.App{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .letterPresent{
   background-color: gold;
   border: 2px solid gold;
@@ -125,6 +131,7 @@
   margin:0;
   color: black
 }
+
 .win{
   color:mediumseagreen;
   font-size: 25px;
@@ -136,4 +143,22 @@
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 5px;
+}
+
+.wordLengthInput{
+  outline: 0;
+  border: 1px solid lightgray;
+  padding: 0.5rem 1.1rem;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.wordLengthInput:hover,
+.wordLengthInput:focus {
+  border-color: rgb(51, 126, 179);
+  box-shadow: 0 0 4pt 0.5pt #0095ff;
+  transition: all 100ms linear;
+}
+
+.head-text{
+  font-weight: bold;
 }

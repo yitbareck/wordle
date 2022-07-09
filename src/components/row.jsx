@@ -60,7 +60,8 @@ function getUncheckedCells(guessedWord, wordLength) {
   }
   return cells;
 }
-export default function Row({ guessedWord, hiddenWord, wordLength }) {
+export default function Row({ guessedWord, hiddenWord }) {
+  const wordLength = hiddenWord.length;
   let cells = [];
   guessedWord.content = guessedWord.content.toLowerCase();
   hiddenWord = hiddenWord.toLowerCase();
