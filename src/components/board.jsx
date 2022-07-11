@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+
 import data from "../service/data";
 import AppModal from "./appModal";
-
 import Row from "./row";
 
 export default function Board({ wordLength = 5 }) {

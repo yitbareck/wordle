@@ -1,6 +1,6 @@
 .App{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 }
@@ -161,4 +161,32 @@
 
 .head-text{
   font-weight: bold;
+}
+.key{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.keySymbol{
+  height:20px;
+  width:20px;
+  border-radius:2px;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+.keyHeading{
+  font-weight: bold;
+  margin-left: 20px;
+}
+.instructionsHeading{
+  font-weight: bold;
+}
+.gameField{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.instructions{
+  margin-right:20px
 }
